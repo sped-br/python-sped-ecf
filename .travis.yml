@@ -1,0 +1,20 @@
+language: python
+python:
+- '3.6'
+install:
+  - pip install six
+  - pip install pytest
+  - pip install coveralls
+script:
+  - coverage run --source=sped_ecf setup.py test
+deploy:
+  provider: pypi
+  user: ginx
+  password:
+    secure: "T4sreyijp6A5yyu5bZSGQ1jyn3imrhqoAkzDxKCcGHa7g+MCVZSDYYOSAUSTsRP0JvCYjs/0j3Ehtmy3gNwF38voEK4L6U7mU5FmHe3zK7WPq/MfSrC/vpltnfD+iek2ypB7OWVy7AbRn+0AfYSaSlPMgsshitJchpmAyEKsAxaKKsKdOdXYv/uuUC2uP+C8Qcd5MjVrmi+vqV3h1N4VmK/XKAH7Ze3rbA/LJj/MciGD23ANy7KkPznZITKESWo5Tem5zeP1NG7ePWT21YvxFYHhRET/IkHSdX80pzh99sXBmGwv1DyIWt+iRtJlaR80hapMGI/6Cs14JEny3lpfSvlqTWXaxxQQICQC07WdKj0YqgZyBVco6jZY56OkIUp+zvfbVEQTpWKnuW7etbgbCW0p7mj4nOz0hwY9s1sxoIl4ZHHSHYKacRXmRoCsXLtu4++xp2G1eEKBWgf0GSriH9s9RD9Sw10QdRBz1cI9JsNAxzjcn1rHR32Rxco4fmC/u0/g2AUl2KDJLDoRP+/JrWMOUWsyOLTeqrA2QRq9GOoEMEVfoOCvTAOhUdctVuZ3IyDXOzmUciag7f2lgivqFEXDaS4zpegYhVdKwMOI4qG7MyG4mQ6f7byV2lZYjY3/aI4cQDoGo0D5BU2vd/5C+LLuesp7kdKhJF/WP/bf11I="
+  distributions: "sdist bdist_wheel"
+  on:
+    tags: true
+    repo: sped-br/python-sped-ecf
+after_success:
+  - coveralls
